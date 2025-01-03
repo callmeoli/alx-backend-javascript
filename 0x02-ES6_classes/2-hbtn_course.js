@@ -1,71 +1,62 @@
-/**
- * Represents a Holberton Course.
- */
-export default class HolbertonCourse {
-  /**
-   * Creates a new @see {@link HolbertonCourse}.
-   *
-   * @param {String} name - The name of the course.
-   * @param {Number} length - How long the course is (in months).
-   * @param {String[]} students - The names of students in the course.
-   */
-  constructor(name, length, students) {
-    this.name = name;
-    this.length = length;
-    this.students = students;
-  }
-
-  /**
-   * Gets the name of this course.
-   */
-  get name() {
-    return this._name;
-  }
-
-  /**
-   * Sets the name of this course.
-   */
-  set name(value) {
-    if (typeof value !== 'string') {
-      throw new TypeError('Name must be a string');
+export default class ALXCourse {
+    constructor(name, length, students){
+        if (typeof name !== 'string'){
+            throw new TypeError('Name must be a string');
+        }
+        if (typeof length !== 'number'){
+            throw new TypeError('Length must be number')
+        }
+        if (typeof students !== 'object'){
+            throw new TypeError('students must be String')
+        }
+        this._name = name,
+        this._length = length,
+        this._students = students
     }
-    this._name = value;
-  }
-
-  /**
-   * Gets the length of this course (in months).
-   */
-  get length() {
-    return this._length;
-  }
-
-  /**
-   * Sets the length of this course (in months).
-   */
-  set length(value) {
-    if (typeof value !== 'number') {
-      throw new TypeError('Length must be a number');
+    get name(){
+        return `${this._name}`
     }
-    this._length = value;
-  }
-
-  /**
-   * Gets the names of students in this course.
-   */
-  get students() {
-    return this._students;
-  }
-
-  /**
-   * Sets the names of students in this course.
-   */
-  set students(value) {
-    if (!(value instanceof Array)) {
-      throw new TypeError('Students must be an array of strings');
+    get length(){
+        return `${this._length}`
     }
-    if (!value.every((student) => typeof student === 'string')) {
-      throw new TypeError('Students must be an array of strings');
+    get students(){
+        return `${this._students}`
     }
-    this._students = value;
-  }
+    set name(name){
+        if (typeof name !== 'string'){
+            throw new TypeError('Name must be a string');
+        }
+        this._name = name
+    }
+    set length(length){
+        if (typeof length !== 'number'){
+            throw new TypeError('Length must be number')
+        }
+        this._length = length
+    }
+    set students(students){
+        if (typeof students !== 'object'){
+            throw new TypeError('students must be String')
+        }
+        this._students = students
+    }
+}
+let fullStack = new ALXCourse('fullstack', 6, ['ten', 'two'])
+const c1 = new ALXCourse("ES6", 1, ["Bob", "Jane"])
+console.log(c1.name);
+c1.name = "Python 101";
+console.log(c1);
+
+try {
+    c1.name = 12;
+} 
+catch(err) {
+    console.log(err);
+}
+
+try {
+    const c2 = new ALXCourse("ES6", "1", ["Bob", "Jane"]);
+}
+catch(err) {
+    console.log(err);
 }
